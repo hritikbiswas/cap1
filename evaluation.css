@@ -1,0 +1,40 @@
+.container {
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.filters {
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(7, auto); 
+    gap: 20px;
+}
+
+.product-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+}
+.filters{
+    height: 100px;
+    width: 100%;
+    background-color: #333333;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.mainContenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
