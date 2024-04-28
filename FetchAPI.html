@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .navbar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    table{
+        font-size: larger; 
+    }
+    .serialcol{
+        margin: 300px;
+    }
+</style>
+<body>
+    <div class="navbar">
+        <p>Filter by Department</p>
+        <select id="department">
+            <option> --Select Department--</option>
+            <option value="hr">hr</option>
+            <option value="finance">finance</option>
+            <option value="marketing"> marketing</option>            
+            <option value="engineering">engineering</option>
+            <option value="operations">operations</option>
+        </select>
+
+        <p>Filter by Gender</p>
+        <select id="gender">
+            <option>--Select gender--</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+        </select>
+
+        <p>Sort by Salary</p>
+        <select id="salary">
+            <option>--Select order--</option>
+            <option value="asc">- low to high</option>
+            <option value="dsc">- high to low</option>
+        </select>
+    </div>
+
+    <div class="Table">
+        <table>
+            <tr>
+                <th>S.no</th>
+                <th>Name </th>
+                <th>Gender</th>
+                <th>Department </th>
+                <th>Salary</th>
+            </tr>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+</body>
+<script>
+    // here we are adding eventlistner to the selectors
+let departmentValue=document.getElementById("department");
+departmentValue.addEventListener("change", showNewData);
+
+let genderValue=document.getElementById("gender");
+genderValue.addEventListener("change", showNewData);
+
+let salaryValue=document.getElementById("salary");
+salaryValue.addEventListener("change", showNewData);
+
+// here we are fetching data based on the selectors
+function showNewData() {
+    let department = departmentValue.value;
+    let gender = genderValue.value;
+    let salarySort = salaryValue.value;
+    
+    let URL = "https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?";
+    
+    // Here we are creating conditions based on the selector
+    if (department !== "--Select Department--") {
+    
+          URL +=`filterBy=department&filterValue=${department}`
+
+    }
+    if (gender !== "--Select gender--") {
+       
+        URL +=`&filterBy=gender&filterValue=${gender}`
+    }
+    if (salarySort !== "--Select order--") {
+       
+        URL +=`&sort=salary&order=${salarySort == "asc" ? "asc" : "desc"}`
+    }
+    
+    // here we are fetching data from API link
+    fetch(URL)
+        .then((res)=>{
+           return res.json()
+        })
+        .then((info)=>{
+            return showData(info)
+        })
+        
+}
+showNewData();
+
+// Here we are displaying the data in table form
+function showData(arr) {
+    let tableBody = document.getElementById("tableBody");
+    
+    tableBody.innerHTML = ""; 
+    
+    arr.data.forEach((employee, index) => {
+        let row = tableBody.insertRow();
+        let serialCol = row.insertCell(0);
+        let nameCol = row.insertCell(1);
+        let genderCol = row.insertCell(2);
+        let departmentCol = row.insertCell(3);
+        let salaryCol = row.insertCell(4);
+
+        serialCol.textContent = index + 1;
+        nameCol.textContent = employee.name;
+        genderCol.textContent = employee.gender;
+        departmentCol.textContent = employee.department;
+        salaryCol.textContent = employee.salary;
+    });
+}
+
+
+
+
+</script>
+</html>
