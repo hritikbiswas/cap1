@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .image{
+        height: 300px;
+        width: 250px;
+    }
+    .product-grid{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        margin: auto;
+        gap: 10px;
+       margin-top: 10px;
+    }
+    .box{
+        border: 2px solid;
+        text-align: center;
+    }
+</style>
+<body>
+    <select>
+        <option>ALL</option>
+        <option value="electronics">electronics</option>
+        <option value="jewelery">jewelery</option>
+        <option value="men's clothing">men's clothing</option>
+        <option value="women's clothing">women's clothing</option>
+    </select>
+    <input type="text" placeholder="search by title">
+        <div class="product-grid">
+
+        </div>
+    
+    
+</body>
+<script>
+   
+     let productGrid=document.querySelector(".product-grid");
+     let catagorySelect=document.querySelector('select')
+     console.log(catagorySelect)
+    function getData(URL){
+        fetch(URL)
+        .then((res)=>{
+            return res.json()
+        })
+        .then((res)=>{
+            return showData(res)
+        })
+    }
+
+    function showData(arr){
+        // console.log(arr)
+        productGrid.innerHTML=null
+        arr.forEach((arr)=>{
+        let box=document.createElement("div");
+        let image=document.createElement("img");
+        let Title=document.createElement("h2");
+        let Price=document.createElement("p");
+        image.className="image";
+        Title.className="Title";
+        Price.className="Price";
+        box.className="box"
+        image.src=arr.image;
+        Title.innerText=arr.title;
+        Price.innerText=arr.price;
+
+        box.append(image,Title,Price)
+        productGrid.append(box)
+        })
+       
+    }
+
+    function handleCatagoryChangr(){
+        let value=catagorySelect.value;
+        let Url=`https://fakestoreapi.com/products/category/${value}`
+        getData(Url)
+        
+    }
+
+    catagorySelect.addEventListener("change",handleCatagoryChangr)
+     getData("https://fakestoreapi.com/products")
+  
+</script>
+</html>
