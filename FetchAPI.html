@@ -44,7 +44,6 @@
             <option value="dsc">- high to low</option>
         </select>
     </div>
-
     <div class="Table">
         <table>
             <tr>
@@ -91,7 +90,6 @@ function showNewData() {
        
         URL +=`&sort=salary&order=${salarySort == "asc" ? "asc" : "desc"}`
     }
-    
     // here we are fetching data from API link
     fetch(URL)
         .then((res)=>{
@@ -99,17 +97,14 @@ function showNewData() {
         })
         .then((info)=>{
             return showData(info)
-        })
-        
+        })        
 }
 showNewData();
 
 // Here we are displaying the data in table form
 function showData(arr) {
-    let tableBody = document.getElementById("tableBody");
-    
-    tableBody.innerHTML = ""; 
-    
+    let tableBody = document.getElementById("tableBody");   
+    tableBody.innerHTML = "";  
     arr.data.forEach((employee, index) => {
         let row = tableBody.insertRow();
         let serialCol = row.insertCell(0);
@@ -125,9 +120,5 @@ function showData(arr) {
         salaryCol.textContent = employee.salary;
     });
 }
-
-
-
-
 </script>
 </html>
