@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      // Your JSX code here
+      
+        const root=document.getElementById("root");
+        //Create a paragraph (<p>) element using JSX to display the text "Seize the day".
+        const msg=<p>Seize the day</p>;
+        ReactDOM.render(msg,root);
+        // Enhance the paragraph element to include dynamic content.
+        const newMsg="Go with flow"
+        const element=<p>{newMsg}</p>;
+        ReactDOM.render(element,root);
+
+        // Implement conditional rendering within your JSX element.
+        const isTrue=true;
+        let flag;
+        isTrue?flag=msg:flag=element;
+
+        ReactDOM.render(flag,root);
+
+
+
+
+
+
+
+    </script>
+  </body>
+</html>
