@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic List Rendering</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // Your ItemList component code will go here
+    let root=document.getElementById("root");
+    function Gallery({children}){
+           return(
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '10px' }}>
+                {children}
+            </div>
+           )
+    }
+    function Show(){
+        return(
+            <div>
+               <Gallery>
+                <img src="https://cdn.britannica.com/34/235834-050-C5843610/two-different-breeds-of-cats-side-by-side-outdoors-in-the-garden.jpg?w=400&h=300&c=crop" height="200px" width="200px"/>
+                <img src="https://bestfriends.org/sites/default/files/styles/hero_dashboard_650/public/hero-dash/Asana3808_Dashboard_Standard.jpg?h=ebad9ecf&itok=kS7Pm7EQ" height="200px" width="200px"/>
+                <img src="https://cdn.shopify.com/s/files/1/1199/8502/files/persian-doll-face.jpg" height="200px" width="200px"/>
+                <img src="https://c02.purpledshub.com/uploads/sites/62/2019/01/Cat-c6f5a79.jpg?w=1175&webp=1" height="200px" width="200px"/>
+                <img src="https://cdn.britannica.com/34/235834-050-C5843610/two-different-breeds-of-cats-side-by-side-outdoors-in-the-garden.jpg?w=400&h=300&c=crop" height="200px" width="200px"/>
+                <img src="https://bestfriends.org/sites/default/files/styles/hero_dashboard_650/public/hero-dash/Asana3808_Dashboard_Standard.jpg?h=ebad9ecf&itok=kS7Pm7EQ" height="200px" width="200px"/>
+                <img src="https://cdn.shopify.com/s/files/1/1199/8502/files/persian-doll-face.jpg" height="200px" width="200px"/>
+                <img src="https://c02.purpledshub.com/uploads/sites/62/2019/01/Cat-c6f5a79.jpg?w=1175&webp=1" height="200px" width="200px"/>
+                <img src="https://cdn.britannica.com/34/235834-050-C5843610/two-different-breeds-of-cats-side-by-side-outdoors-in-the-garden.jpg?w=400&h=300&c=crop" height="200px" width="200px"/>
+                <img src="https://bestfriends.org/sites/default/files/styles/hero_dashboard_650/public/hero-dash/Asana3808_Dashboard_Standard.jpg?h=ebad9ecf&itok=kS7Pm7EQ" height="200px" width="200px"/>
+                <img src="https://cdn.shopify.com/s/files/1/1199/8502/files/persian-doll-face.jpg" height="200px" width="200px"/>
+                <img src="https://c02.purpledshub.com/uploads/sites/62/2019/01/Cat-c6f5a79.jpg?w=1175&webp=1" height="200px" width="200px"/>
+                <img src="https://cdn.shopify.com/s/files/1/1199/8502/files/persian-doll-face.jpg" height="200px" width="200px"/>
+                <img src="https://c02.purpledshub.com/uploads/sites/62/2019/01/Cat-c6f5a79.jpg?w=1175&webp=1" height="200px" width="200px"/>
+             </Gallery>    
+            </div>
+        )
+    }
+
+    ReactDOM.render(<Show />,root)
+  </script>
+</body>
+</html>
